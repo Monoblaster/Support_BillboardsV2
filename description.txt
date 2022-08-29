@@ -58,7 +58,9 @@ Forces this billboard's ghost to be cleard for the specified client.
 
 AVBillboardGroup functions:
 A AVBillboardGroup refers to a ScriptGroup with special functions for AVBillboards.
-A AVBillboard is a special billboard that has been set up to be able to be seen through anything.
+A AVBillboard datablock refers to a FxLightData that inherits from DefaultAVBillboard.
+A AVBillboard refers to a billboard created using a AVBillboardGroup and by BillboardMount_AddAVBillboard.
+AvBillboards can be seen through solid objects but require special setup for them to work properly.
 
 AVBillboardGroup_Make()
 Creates a AVBillboardGroup.
@@ -92,3 +94,4 @@ DefaultBillboardMount
 OverheadBillboardMount
 
 DefaultBillboard
+DefaultAVBillboard
