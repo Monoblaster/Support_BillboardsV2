@@ -42,7 +42,7 @@ function BillboardMount::OnAdd(%db,%bbm)
 function BillboardMount::OnRemove(%db,%bbm)
 {
 	BillboardMount_CLearBillboards(%bbm);
-	%group.delete();
+	%bbm.billBoardGroup.delete();
 }
 
 function BillboardMount::onUnmount(%db,%bbm,%mount,%node) 
@@ -95,7 +95,7 @@ function BillboardMount_CLearBillboards(%bbm)
 	for(%i = %count - 1; %i >= 0; %i++)
 	{
 		%obj = %group.getObject(%i);
-		%obj.getDatablock().OnClear(%obj);
+		%obj.delete();
 	}
 
 	return %bbm;
@@ -105,12 +105,12 @@ function BillboardMount_AddAVBillboard(%bbm,%avbbg,%lightData,%tag)
 {
 	if(!%avbbg.loaded)
 	{
-		return;
+		return "";
 	}
-
+	
 	if(!%bbm.isBillboardMount || %avbbg.class !$= "AVBillboardGroup" || %lightData.className !$= "AVBillboard")
 	{
-		return;
+		return "";
 	}
 
 	%group = %avbbg;
@@ -122,6 +122,10 @@ function BillboardMount_AddAVBillboard(%bbm,%avbbg,%lightData,%tag)
 		{
 			break;
 		}
+	}
+	if(%i >= %count)
+	{
+		return "";
 	}
 	
 	%bb = %avbbg.getObject(%i);
@@ -164,11 +168,6 @@ function Billboard::OnAdd(%db,%bb)
 	%bb.isBillboard = true; 
 }
 
-function Billboard::OnClear(%db,%bb)
-{
-	%bb.delete(); 
-}
-
 function Billboard_Ghost(%bb,%client)
 {
 	%bb.ScopeToClient(%client);
@@ -209,11 +208,6 @@ datablock fxLightData(DefaultAVBillboard)
 function AVBillboard::OnAdd(%db,%bb)
 {
 	%bb.isAVBillboard = true; 
-}
-
-function AVBillboard::OnClear(%db,%bb)
-{
-
 }
 
 function AVBillboardGroup_Make()
@@ -316,4 +310,9 @@ function AVBillboardGroup::Clear(%avbbg,%tag)
 
 	%group.active = getMax(%group.active,0);
 	return %group;
+}
+
+function AVBillboardGroup::OnRemove(%avbbg)
+{
+	%avbbg.deleteall();
 }

@@ -28,7 +28,7 @@ Attaches a new billboard to the specified mount.
 %bbm		:	A mount.
 %lightData	:	A billboard datablock.
 %dontGhost	: 	An optional field that when true makes the newly created billboard not ghost by default.
-return		:	The newly created billboard.
+return		:	The newly created billboard or nothing if failed.
 
 BillboardMount_CLearBillboards(%bbm)
 Clears all billboards from the specified mount. (This doesn't affect AVBillboardGroups)
