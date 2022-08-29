@@ -97,10 +97,17 @@ function BillboardMount_CLearBillboards(%bbm)
 		%obj = %group.getObject(%i);
 		%obj.getDatablock().OnClear(%obj);
 	}
+
+	return %bbm;
 }
 
 function BillboardMount_AddAVBillboard(%bbm,%avbbg,%lightData,%tag)
 {
+	if(!%avbbg.loaded)
+	{
+		return;
+	}
+
 	if(!%bbm.isBillboardMount || %avbbg.class !$= "AVBillboardGroup" || %lightData.className !$= "AVBillboard")
 	{
 		return;
@@ -128,7 +135,7 @@ function BillboardMount_AddAVBillboard(%bbm,%avbbg,%lightData,%tag)
 	%bb.attachToObject(%bbm);
 	%bb.setNetFlag(8,false);
 	
-	return "";
+	return %bbm;
 }
 
 datablock fxLightData(DefaultBillboard)
@@ -173,7 +180,6 @@ function Billboard_ClearGhost(%bb,%client)
 }
 
 $AVBillboard::loadMount = $AVBillboard::loadMount || DefaultBillboardMount.Make();
-
 $AVBillboard::loadTransform = "0 0 1000 0 0 0 1";
 $AVBillboard::loadMountTransform = vectorAdd(getWords($AVBillboard::loadTransform,0,2),matrixMulVector($AVBillboard::loadTransform,"0 4 0")) SPC getWords($AVBillboard::loadTransform,3);
 $AVBillboard::loadMount.setTransform($AVBillboard::loadMountTransform);
@@ -284,6 +290,11 @@ function AVBillboardGroup::FinishLoad(%avbbg)
 
 function AVBillboardGroup::Clear(%avbbg,%tag)
 {
+	if(!%avbbg.loaded)
+	{
+		return;
+	}
+
 	%group = %avbbg;
 	%count = %group.getCount();
 	for(%i = %count - 1; %i >= 0; %i--)
