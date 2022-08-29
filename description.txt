@@ -4,7 +4,7 @@ dll help repository: https://gitlab.com/Queuenard/blockland-DLL
 this script allows you to easily create 2d billboards and 2d billboards that are always visible.
 a billboard is something that is always facing the players camera.
 
-billboads in this script use light flares to make this effect which is why we have to use light datablocks.
+billboards in this script use light flares to make this effect which is why we have to use light datablocks.
 they also use player datablocks which the light flares are attached to.
 the player datablocks that this script comes with have no mesh and just contain mount points.
 if you want to make your own model for light mounting it is very simple:
