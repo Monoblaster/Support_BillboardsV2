@@ -68,6 +68,7 @@ return      :   A new AVBillboardGroup.
 This function is required for the AVBillboardGroup to function.
 It may only be ever used on a single client per AVBillboardGroup.
 This function creates a camera for the client at $AVBillboard::loadTransform and spawns the soon to be AVBillboards infront of them.
+The camera's datablock is BillboardLoadingCamera so you may use that if you want player input call FinishLoad.
 %client     :   A client.
 %num        :   The number of AVBillboards to make.
 return      :   The AVBillboardGroup.
