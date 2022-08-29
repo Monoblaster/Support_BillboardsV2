@@ -1,0 +1,55 @@
+this support script requires the selective ghosting dll to be installed on wherever it is running
+dll help repository: https://gitlab.com/Queuenard/blockland-DLL
+
+this script allows you to easily create 2d billboards and 2d billboards that are always visible.
+a billboard is something that is always facing the players camera.
+
+billboads in this script use light flares to make this effect which is why we have to use light datablocks.
+they also use player datablocks which the light flares are attached to.
+the player datablocks that this script comes with have no mesh and just contain mount points.
+if you want to make your own model for light mounting it is very simple:
+make a model with 2 mount points.
+make sure the second mount point is where you want your billboard to appear.
+and that's it!
+
+Mount Functions:
+MountDatablock.Make()
+
+
+
+Always visible billboards will render through anything infront of them.
+Only use them if you want this behaviour.
+Always Visible Billboard functions:
+AVBillboards_Create(%mountDB,%count)
+Creates a number of always visible billboards.
+%mountDB    :   The player datablock to be created that you want all of the lights attached to.
+%count      :   The number of AV Billboards you want created.
+return      :   A group containing the newly created billboards of class AVBillboards_Create
+
+(AVBillboards).Load(%client,%pos)
+Sets up the always visible billboards for a specified client. This can only be done once per group.
+%client     :   A client to be affected.
+%pos        :   Where you want the loading to happen usually far away.
+return      :   The AVBillboards group.
+
+(AVBillboards).Make(%lightDB,%position,%tag)
+Puts one of the billboards from the group at the specified position set to the new light datablock.
+%lightDB    :   New light datablock for for the billboard.
+%position   :   New position for it.
+%tag        :   A tag used for clearing AVBillboards from the scene.
+return      :   The used billboard.
+
+(AVBillboards).Clear(%tag)
+Clears, not deletes, all billboards of this group optionaly with the specified tag.
+%tag        :   If left empty will effect all billboards otherwise only the ones with this tag.
+return      :   The AVBillboards group.
+
+Always Visible Billboards are very unique in that they must be loaded onto a client before being used.
+And after that may only be used and only seen by that client. This is why they are structured like a group.
+Don't be afraid of making a lot of lights like this for each client just because the client it is loaded to
+should be the only one who it is ghosted to.
+
+The Make command can only use up to the number of billboards within the group at one time.
+Also since it returns the billboard it grabbed from the group you can mount it and do whatever you like.
+Something very important to keep this effect working is the fadeTime of the light datablock.
+Make sure to only use datablocks with infinite fadeTimes with Always Visible Billboards.
