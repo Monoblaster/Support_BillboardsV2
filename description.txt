@@ -71,15 +71,9 @@ This function is required for the AVBillboardGroup to function.
 It may only be ever used on a single client per AVBillboardGroup.
 This function creates a camera for the client at $AVBillboard::loadTransform and spawns the soon to be AVBillboards infront of them.
 The camera's datablock is BillboardLoadingCamera so you may use that if you want player input call FinishLoad.
+It will automatically finish this process after a few seconds.
 %client     :   A client.
 %num        :   The number of AVBillboards to make.
-return      :   The AVBillboardGroup.
-
-(AVBillboardGroup).FinishLoad()
-This function is also required for the AVBillboardGroup to function.
-This function must be called sometime after the Load function.
-This function resets the players camera and finalizes the process of making AVBillboards.
-Since this process is client sided you must make sure to give the client time before calling this function.
 return      :   The AVBillboardGroup.
 
 (AVBillboardGroup).Clear(%tag)
