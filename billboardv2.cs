@@ -45,11 +45,6 @@ function BillboardMount::OnRemove(%db,%bbm)
 	%bbm.billBoardGroup.delete();
 }
 
-function BillboardMount::onUnmount(%db,%bbm,%mount,%node) 
-{
-	%bbm.delete();
-}
-
 function BillboardMount::Make(%db)
 {
 	%obj = new AiPlayer()
@@ -245,6 +240,12 @@ function AVBillboardGroup::Load(%avbbg,%client,%num)
 	{
 		return;
 	}
+
+	if(%num <= 0)
+	{
+		return;
+	}
+	
 	%avbbg.loadedClient = %client;
 	%camera = %client.AVBillboardGroup_LoadCamera = %client.AVBillboardGroup_LoadCamera ||  new Camera(){dataBlock = BillboardLoadingCamera;};
 	%dummyCamera = %client.AVBillboardGroup_LoadDummyCamera = %client.AVBillboardGroup_LoadDummyCamera || new Camera(){dataBlock = BillboardLoadingCamera;};
