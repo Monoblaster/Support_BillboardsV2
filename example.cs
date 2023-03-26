@@ -53,7 +53,7 @@ function MountGroup::Mount(%o,%player)
 	%count = %o.getCount();
 	for(%i = 0; %i < %count; %i++)
 	{
-		%mount = %o.getObject(%i)
+		%mount = %o.getObject(%i);
 		if(!%mount.getObjectMount())
 		{
 			// %mount is not mounted. Break
@@ -65,7 +65,7 @@ function MountGroup::Mount(%o,%player)
 	if(%i >= %count)
 	{
 		// None are availible
-		return false
+		return false;
 	}
 
 	// MountObject will return if it is successful
