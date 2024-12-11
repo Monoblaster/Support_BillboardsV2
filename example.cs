@@ -11,6 +11,10 @@ datablock fxLightData(ExampleAVLight : DefaultAVBillboard)
 };
 
 // returns a new MountGroup object with starting datablocks or false if failed
+// %db - a playerdata with the BillboardMount classname
+// %num - number to pool into the group
+// %slot - the slot the mounts should be mounted to on a player
+// return - a MountGroup scriptobject
 function MountGroup_Create(%db,%num,%slot)
 {
 
@@ -46,6 +50,8 @@ function MountGroup_Create(%db,%num,%slot)
 }
 
 // Mounts a mount from the mountgroup to this player. Returns true if successful
+// %player - the target player will a BillboardMount to this player
+// return - a BillboardMount that you can mount billboards to and so on
 function MountGroup::Mount(%o,%player)
 {
 	// Loops through the group looking for any unmounted mounts
@@ -73,6 +79,9 @@ function MountGroup::Mount(%o,%player)
 }
 
 // Add a Always Visible Billboard to the player using this mount group
+// %player - the target player. will mount a BillboardMount to the player if not already mounted to
+// %light - the AVBillboard fxLight to use
+// %tag - a string that is ascociated with this billboard that can be used later to clear it
 function MountGroup::AVBillboard(%o,%player,%light,%tag)
 {
 	// See if the playe already has a mount
@@ -106,6 +115,8 @@ function MountGroup::AVBillboard(%o,%player,%light,%tag)
 }
 
 // Clear Always Visible Billboards with this tag within the mount group
+// %player - the target player. will mount a BillboardMount to the player if not already mounted to
+// %tag - a string that will be matched with the strings of all mounted AVBillboards in the client's AVBillboardGroup
 function MountGroup::clearAVBillboards(%o,%player,%tag)
 {
 	// See if the playe already has a mount
