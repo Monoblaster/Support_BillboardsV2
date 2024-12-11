@@ -171,4 +171,4 @@ package MountGroup_Billboards
 		return parent::onClientLeaveGame(%this);
 	}
 };
-activatePackage(Bo2_Billboards);
+activatePackage(MountGroup_Billboards);
