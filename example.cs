@@ -116,7 +116,7 @@ function MountGroup::AVBillboard(%o,%player,%light,%tag)
 
 // Clear Always Visible Billboards with this tag within the mount group
 // %player - the target player. will mount a BillboardMount to the player if not already mounted to
-// %tag - a string that will be matched with the strings of all mounted AVBillboards in the client's AVBillboardGroup
+// %tag - a string that will be matched with the strings of all mounted AVBillboards specificaly within this mountgroup
 function MountGroup::clearAVBillboards(%o,%player,%tag)
 {
 	// See if the playe already has a mount
