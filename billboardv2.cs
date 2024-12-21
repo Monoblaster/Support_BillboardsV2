@@ -103,6 +103,7 @@ function BillboardMount_ClearBillboards(%bbm)
 	for(%i = %count - 1; %i >= 0; %i--)
 	{
 		%obj = %group.getObject(%i);
+		%group.remove(%obj);
 		%obj.delete();
 	}
 
